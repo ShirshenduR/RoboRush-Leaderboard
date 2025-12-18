@@ -151,13 +151,20 @@ export default function Leaderboard() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-dark-bg">
-        <div className="text-neon-yellow text-2xl animate-pulse">Loading...</div>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="text-neon-yellow text-2xl animate-pulse"
+        >
+          Loading...
+        </motion.div>
       </div>
     )
   }
 
   return (
     <div className="min-h-screen bg-dark-bg bg-circuit-pattern text-white relative overflow-hidden">
+
       {/* Animated scan line effect */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute w-full h-1 bg-gradient-to-r from-transparent via-neon-yellow to-transparent opacity-20 animate-scan" />
