@@ -164,7 +164,6 @@ export default function Leaderboard() {
 
   return (
     <div className="min-h-screen bg-dark-bg bg-circuit-pattern text-white relative overflow-hidden">
-
       {/* Animated scan line effect */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute w-full h-1 bg-gradient-to-r from-transparent via-neon-yellow to-transparent opacity-20 animate-scan" />
