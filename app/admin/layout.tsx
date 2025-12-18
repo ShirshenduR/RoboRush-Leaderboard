@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useRouter, usePathname } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 
 export default function AdminLayout({
   children,
@@ -9,7 +9,6 @@ export default function AdminLayout({
   children: React.ReactNode
 }) {
   const [showContent, setShowContent] = useState(false)
-  const router = useRouter()
   const pathname = usePathname()
   
   const isLoginPage = pathname === '/admin/login'
@@ -63,44 +62,39 @@ export default function AdminLayout({
   async function handleLogout() {
     try {
       await fetch('/api/auth/logout', { method: 'POST' })
-      router.push('/admin/login')
+      window.location.href = '/admin/login'
     } catch (error) {
-      router.push('/admin/login')
+      console.error('Logout failed:', error)
+      window.location.href = '/admin/login'
     }
   }
 
-  // Don't show loading or check auth on login page
-  if (isLoginPage) {
-    return <>{children}</>
-  }
-
-  if (loading) {
+  if (!showContent) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-dark-bg">
-        <div className="text-neon-yellow text-2xl animate-pulse">Verifying...</div>
+      <div style={{ backgroundColor: '#0a0a0a' }} className="min-h-screen flex items-center justify-center">
+        <div style={{ color: '#FFFF00' }}>Loading...</div>
       </div>
     )
   }
 
-  if (!isAuthenticated) {
-    return null
-  }
-
   return (
-    <div className="min-h-screen bg-dark-bg bg-circuit-pattern">
-      <nav className="border-b-2 border-neon-yellow bg-black/50 backdrop-blur-sm">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-neon-yellow tracking-wider" style={{ fontFamily: 'monospace' }}>
-            ADMIN PANEL
-          </h1>
+    <div style={{ backgroundColor: '#0a0a0a' }} className="min-h-screen">
+      {!isLoginPage && (
+        <div className="border-b px-4 py-3 flex justify-between items-center" style={{ borderColor: '#1a1a1a', backgroundColor: '#111111' }}>
+          <h1 style={{ color: '#FFFF00' }} className="text-xl font-bold">ADMIN PANEL</h1>
           <button
             onClick={handleLogout}
-            className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm rounded transition-colors"
+            className="px-4 py-2 rounded transition-colors"
+            style={{ 
+              backgroundColor: 'transparent', 
+              border: '1px solid #FFFF00',
+              color: '#FFFF00'
+            }}
           >
             Logout
           </button>
         </div>
-      </nav>
+      )}
       {children}
     </div>
   )
