@@ -14,7 +14,8 @@ export async function POST(request: NextRequest) {
       response.cookies.set(ADMIN_SESSION_COOKIE, 'authenticated', {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        sameSite: 'strict',
+        sameSite: 'lax',
+        path: '/',
         maxAge: 60 * 60 * 8, // 8 hours
       })
       

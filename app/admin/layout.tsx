@@ -27,6 +27,7 @@ export default function AdminLayout({
     try {
       const response = await fetch('/api/auth/check', {
         cache: 'no-store',
+        credentials: 'same-origin',
         headers: {
           'Cache-Control': 'no-cache',
         },
