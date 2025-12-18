@@ -8,83 +8,55 @@ export default function AdminLayout({
 }: {
   children: React.ReactNode
 }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [loading, setLoading] = useState(true)
+  const [showContent, setShowContent] = useState(false)
   const router = useRouter()
   const pathname = usePathname()
   
   const isLoginPage = pathname === '/admin/login'
 
   useEffect(() => {
-    if (!isLoginPage) {
-      // Check if user just logged in
-      const justLoggedIn = typeof window !== 'undefined' && sessionStorage.getItem('just_logged_in') === 'true'
-      
-      if (justLoggedIn) {
-        // Clear the flag and assume authenticated
-        sessionStorage.removeItem('just_logged_in')
-        setIsAuthenticated(true)
-        setLoading(false)
-        // Verify in background
-        verifyAuth()
-      } else {
-        checkAuth()
-      }
-    } else {
-      setLoading(false)
-      setIsAuthenticated(false)
+    if (isLoginPage) {
+      // Always show login page
+      setShowContent(true)
+      return
     }
-  }, [pathname, isLoginPage])
 
-  async function verifyAuth() {
-    // Background verification without blocking UI
-    try {
-      const response = await fetch('/api/auth/check', {
-        method: 'GET',
-        credentials: 'include',
-        headers: {
-          'Cache-Control': 'no-cache',
-        },
-      })
-      const { authenticated } = await response.json()
-      if (!authenticated) {
-        router.push('/admin/login')
-      }
-    } catch (error) {
-      console.error('Background auth verification failed:', error)
+    // For admin pages, check if just logged in
+    const justLoggedIn = typeof window !== 'undefined' && sessionStorage.getItem('just_logged_in') === 'true'
+    
+    if (justLoggedIn) {
+      // User just logged in, show content immediately
+      sessionStorage.removeItem('just_logged_in')
+      setShowContent(true)
+      console.log('Showing admin panel after login')
+      return
     }
-  }
+
+    // Otherwise, verify authentication
+    console.log('Checking authentication...')
+    checkAuth()
+  }, [pathname, isLoginPage])
 
   async function checkAuth() {
     try {
       const response = await fetch('/api/auth/check', {
         method: 'GET',
         credentials: 'include',
-        headers: {
-          'Cache-Control': 'no-cache',
-          'Pragma': 'no-cache',
-        },
+        cache: 'no-store',
       })
       
-      if (!response.ok) {
-        throw new Error('Auth check failed')
-      }
-      
       const { authenticated } = await response.json()
+      console.log('Auth check result:', authenticated)
       
       if (authenticated) {
-        setIsAuthenticated(true)
-        setLoading(false)
+        setShowContent(true)
       } else {
-        setIsAuthenticated(false)
-        setLoading(false)
-        router.push('/admin/login')
+        console.log('Not authenticated, redirecting to login')
+        window.location.href = '/admin/login'
       }
     } catch (error) {
       console.error('Auth check error:', error)
-      setIsAuthenticated(false)
-      setLoading(false)
-      router.push('/admin/login')
+      window.location.href = '/admin/login'
     }
   }
 
