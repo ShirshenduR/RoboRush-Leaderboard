@@ -9,20 +9,23 @@ export async function POST(request: NextRequest) {
     const { password } = await request.json()
     
     console.log('Login attempt - Password matches:', password === SESSION_SECRET)
+    console.log('Environment:', process.env.NODE_ENV)
     
     if (password === SESSION_SECRET) {
       const response = NextResponse.json({ success: true })
       
-      // Set cookie with explicit domain and path
-      response.cookies.set(ADMIN_SESSION_COOKIE, 'authenticated', {
+      // Set cookie with production settings
+      const cookieOptions = {
         httpOnly: true,
-        secure: true, // Always use secure in production
-        sameSite: 'lax',
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax' as const,
         path: '/',
         maxAge: 60 * 60 * 8, // 8 hours
-      })
+      }
       
-      console.log('Cookie set successfully')
+      response.cookies.set(ADMIN_SESSION_COOKIE, 'authenticated', cookieOptions)
+      
+      console.log('Cookie set with options:', cookieOptions)
       return response
     }
     

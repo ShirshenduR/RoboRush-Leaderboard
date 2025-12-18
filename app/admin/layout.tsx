@@ -17,18 +17,46 @@ export default function AdminLayout({
 
   useEffect(() => {
     if (!isLoginPage) {
-      checkAuth()
+      // Check if user just logged in
+      const justLoggedIn = typeof window !== 'undefined' && sessionStorage.getItem('just_logged_in') === 'true'
+      
+      if (justLoggedIn) {
+        // Clear the flag and assume authenticated
+        sessionStorage.removeItem('just_logged_in')
+        setIsAuthenticated(true)
+        setLoading(false)
+        // Verify in background
+        verifyAuth()
+      } else {
+        checkAuth()
+      }
     } else {
       setLoading(false)
       setIsAuthenticated(false)
     }
   }, [pathname, isLoginPage])
 
+  async function verifyAuth() {
+    // Background verification without blocking UI
+    try {
+      const response = await fetch('/api/auth/check', {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+          'Cache-Control': 'no-cache',
+        },
+      })
+      const { authenticated } = await response.json()
+      if (!authenticated) {
+        router.push('/admin/login')
+      }
+    } catch (error) {
+      console.error('Background auth verification failed:', error)
+    }
+  }
+
   async function checkAuth() {
     try {
-      // Add a small delay to ensure cookie is set
-      await new Promise(resolve => setTimeout(resolve, 100))
-      
       const response = await fetch('/api/auth/check', {
         method: 'GET',
         credentials: 'include',

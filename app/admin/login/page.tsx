@@ -25,8 +25,10 @@ export default function AdminLogin() {
       const result = await response.json()
       
       if (result.success) {
-        // Delay to ensure cookie is fully set
-        await new Promise(resolve => setTimeout(resolve, 300))
+        // Set flag in sessionStorage to bypass initial auth check
+        if (typeof window !== 'undefined') {
+          sessionStorage.setItem('just_logged_in', 'true')
+        }
         
         // Force a hard navigation to ensure cookie is sent
         window.location.href = '/admin'
