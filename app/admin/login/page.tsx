@@ -19,26 +19,27 @@ export default function AdminLogin() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ password }),
-        credentials: 'same-origin',
+        credentials: 'include',
       })
       
       const result = await response.json()
       
       if (result.success) {
-        // Small delay to ensure cookie is set
-        await new Promise(resolve => setTimeout(resolve, 100))
-        router.push('/admin')
-        router.refresh()
+        // Delay to ensure cookie is fully set
+        await new Promise(resolve => setTimeout(resolve, 300))
+        
+        // Force a hard navigation to ensure cookie is sent
+        window.location.href = '/admin'
       } else {
         setError(result.error || 'Authentication failed')
         setPassword('')
+        setLoading(false)
       }
     } catch (err) {
       setError('Authentication failed')
       setPassword('')
+      setLoading(false)
     }
-    
-    setLoading(false)
   }
 
   return (

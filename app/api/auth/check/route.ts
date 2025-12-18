@@ -8,8 +8,17 @@ export async function GET() {
     const sessionCookie = cookies().get(ADMIN_SESSION_COOKIE)
     const isAuthenticated = sessionCookie?.value === 'authenticated'
     
-    return NextResponse.json({ authenticated: isAuthenticated })
+    console.log('Auth check - Cookie present:', !!sessionCookie, 'Authenticated:', isAuthenticated)
+    
+    return NextResponse.json({ 
+      authenticated: isAuthenticated 
+    }, {
+      headers: {
+        'Cache-Control': 'no-store, must-revalidate',
+      }
+    })
   } catch (error) {
+    console.error('Auth check error:', error)
     return NextResponse.json({ authenticated: false })
   }
 }

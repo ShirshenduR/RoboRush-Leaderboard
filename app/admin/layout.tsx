@@ -20,26 +20,41 @@ export default function AdminLayout({
       checkAuth()
     } else {
       setLoading(false)
+      setIsAuthenticated(false)
     }
   }, [pathname, isLoginPage])
 
   async function checkAuth() {
     try {
+      // Add a small delay to ensure cookie is set
+      await new Promise(resolve => setTimeout(resolve, 100))
+      
       const response = await fetch('/api/auth/check', {
-        cache: 'no-store',
-        credentials: 'same-origin',
+        method: 'GET',
+        credentials: 'include',
         headers: {
           'Cache-Control': 'no-cache',
+          'Pragma': 'no-cache',
         },
       })
-      const { authenticated } = await response.json()
-      setIsAuthenticated(authenticated)
-      setLoading(false)
       
-      if (!authenticated) {
+      if (!response.ok) {
+        throw new Error('Auth check failed')
+      }
+      
+      const { authenticated } = await response.json()
+      
+      if (authenticated) {
+        setIsAuthenticated(true)
+        setLoading(false)
+      } else {
+        setIsAuthenticated(false)
+        setLoading(false)
         router.push('/admin/login')
       }
     } catch (error) {
+      console.error('Auth check error:', error)
+      setIsAuthenticated(false)
       setLoading(false)
       router.push('/admin/login')
     }
