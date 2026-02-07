@@ -71,24 +71,24 @@ export default function AdminLayout({
 
   if (!showContent) {
     return (
-      <div style={{ backgroundColor: '#0a0a0a' }} className="min-h-screen flex items-center justify-center">
-        <div style={{ color: '#FFFF00' }}>Loading...</div>
+      <div style={{ backgroundColor: '#050b18' }} className="min-h-screen flex items-center justify-center">
+        <div style={{ color: '#38bdf8' }}>Loading...</div>
       </div>
     )
   }
 
   return (
-    <div style={{ backgroundColor: '#0a0a0a' }} className="min-h-screen">
+    <div style={{ backgroundColor: '#050b18' }} className="min-h-screen">
       {!isLoginPage && (
-        <div className="border-b px-4 py-3 flex justify-between items-center" style={{ borderColor: '#1a1a1a', backgroundColor: '#111111' }}>
-          <h1 style={{ color: '#FFFF00' }} className="text-xl font-bold">ADMIN PANEL</h1>
+        <div className="border-b px-4 py-3 flex justify-between items-center" style={{ borderColor: '#1b2b4b', backgroundColor: '#0b1635' }}>
+          <h1 style={{ color: '#38bdf8' }} className="text-xl font-bold font-display">ADMIN PANEL</h1>
           <button
             onClick={handleLogout}
             className="px-4 py-2 rounded transition-colors"
             style={{ 
               backgroundColor: 'transparent', 
-              border: '1px solid #FFFF00',
-              color: '#FFFF00'
+              border: '1px solid #38bdf8',
+              color: '#38bdf8'
             }}
           >
             Logout

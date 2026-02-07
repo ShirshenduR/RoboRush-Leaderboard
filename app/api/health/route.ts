@@ -4,6 +4,6 @@ export async function GET() {
   return NextResponse.json({
     status: 'ok',
     timestamp: new Date().toISOString(),
-    service: 'RoboRush 2026 Leaderboard',
+    service: 'Drone Soccer League 2026 Leaderboard',
   })
 }

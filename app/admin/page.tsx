@@ -204,8 +204,8 @@ export default function AdminDashboard() {
           animate={{ opacity: 1, scale: 1 }}
           className="flex flex-col items-center gap-4"
         >
-          <div className="w-16 h-16 border-4 border-t-transparent rounded-full animate-spin" style={{ borderColor: '#FFFF00' }} />
-          <div style={{ color: '#FFFF00' }} className="text-xl font-mono">Loading...</div>
+          <div className="w-16 h-16 border-4 border-t-transparent rounded-full animate-spin" style={{ borderColor: '#38bdf8' }} />
+          <div style={{ color: '#38bdf8' }} className="text-xl font-mono">Loading...</div>
         </motion.div>
       </div>
     )
@@ -240,7 +240,7 @@ export default function AdminDashboard() {
       >
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold" style={{ color: '#FFFF00' }}>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-display" style={{ color: '#38bdf8' }}>
               Team Management
             </h2>
             <p className="text-gray-400 text-sm mt-1">
@@ -258,8 +258,8 @@ export default function AdminDashboard() {
             </button>
             <button
               onClick={() => setShowCreateModal(true)}
-              className="px-4 sm:px-6 py-2 font-bold rounded-lg transition-all transform hover:scale-105 active:scale-95 flex items-center gap-2 text-sm sm:text-base shadow-lg shadow-yellow-500/50"
-              style={{ backgroundColor: '#FFFF00', color: '#0a0a0a' }}
+              className="px-4 sm:px-6 py-2 font-bold rounded-lg transition-all transform hover:scale-105 active:scale-95 flex items-center gap-2 text-sm sm:text-base shadow-lg shadow-sky-500/40"
+              style={{ backgroundColor: '#38bdf8', color: '#050b18' }}
             >
               <span className="text-lg">+</span>
               Create Team
@@ -273,8 +273,8 @@ export default function AdminDashboard() {
             placeholder="Search teams..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full px-4 py-3 bg-black/40 border-2 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-yellow-500 transition-colors"
-            style={{ borderColor: '#1a1a1a' }}
+            className="w-full px-4 py-3 bg-black/40 border-2 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-dsl-blue transition-colors"
+            style={{ borderColor: '#1b2b4b' }}
           />
           <svg
             className="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-500"
@@ -299,8 +299,8 @@ export default function AdminDashboard() {
               transition={{ delay: index * 0.05 }}
               className="border rounded-lg p-4 sm:p-6 backdrop-blur-sm hover:shadow-xl transition-all"
               style={{ 
-                backgroundColor: '#111111',
-                borderColor: team.status === 'active' ? '#FFFF00' : '#1a1a1a',
+                backgroundColor: '#0b1635',
+                borderColor: team.status === 'active' ? '#38bdf8' : '#1b2b4b',
                 borderWidth: team.status === 'active' ? '2px' : '1px'
               }}
             >
@@ -310,7 +310,7 @@ export default function AdminDashboard() {
                     <h3 className="text-lg sm:text-xl font-bold text-white break-words flex-1">
                       {team.team_name}
                     </h3>
-                    <span className="text-2xl sm:text-3xl font-bold font-mono flex-shrink-0" style={{ color: '#FFFF00' }}>
+                    <span className="text-2xl sm:text-3xl font-bold font-mono flex-shrink-0" style={{ color: '#38bdf8' }}>
                       {team.score}
                     </span>
                   </div>
@@ -318,8 +318,8 @@ export default function AdminDashboard() {
                     <select
                       value={team.status}
                       onChange={(e) => handleStatusChange(team, e.target.value)}
-                      className="px-3 py-1.5 bg-black/60 border text-white rounded-lg text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-yellow-500 transition-all"
-                      style={{ borderColor: '#1a1a1a' }}
+                      className="px-3 py-1.5 bg-black/60 border text-white rounded-lg text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-dsl-blue/60 transition-all"
+                      style={{ borderColor: '#1b2b4b' }}
                     >
                       <option value="active">✓ Active</option>
                       <option value="inactive">⏸ Inactive</option>
@@ -380,9 +380,9 @@ export default function AdminDashboard() {
               exit={{ scale: 0.9, y: 20 }}
               onClick={(e) => e.stopPropagation()}
               className="border-2 p-6 sm:p-8 rounded-lg max-w-md w-full shadow-2xl"
-              style={{ backgroundColor: '#111111', borderColor: '#FFFF00' }}
+              style={{ backgroundColor: '#0b1635', borderColor: '#38bdf8' }}
             >
-              <h3 className="text-xl sm:text-2xl font-bold mb-4" style={{ color: '#FFFF00' }}>
+              <h3 className="text-xl sm:text-2xl font-bold mb-4" style={{ color: '#38bdf8' }}>
                 Update Score
               </h3>
               <p className="text-gray-300 mb-4 text-sm sm:text-base">{selectedTeam.team_name}</p>
@@ -394,8 +394,8 @@ export default function AdminDashboard() {
                     type="number"
                     name="newScore"
                     defaultValue={selectedTeam.score}
-                    className="w-full px-4 py-3 bg-black/60 border-2 text-white rounded-lg focus:outline-none focus:border-yellow-500 transition-colors text-lg font-mono"
-                    style={{ borderColor: '#1a1a1a' }}
+                    className="w-full px-4 py-3 bg-black/60 border-2 text-white rounded-lg focus:outline-none focus:border-dsl-blue transition-colors text-lg font-mono"
+                    style={{ borderColor: '#1b2b4b' }}
                     required
                     autoFocus
                   />
@@ -406,15 +406,15 @@ export default function AdminDashboard() {
                     type="text"
                     name="reason"
                     placeholder="e.g., Round 1 completed"
-                    className="w-full px-4 py-2 bg-black/60 border text-white rounded-lg focus:outline-none focus:border-yellow-500 transition-colors"
-                    style={{ borderColor: '#1a1a1a' }}
+                    className="w-full px-4 py-2 bg-black/60 border text-white rounded-lg focus:outline-none focus:border-dsl-blue transition-colors"
+                    style={{ borderColor: '#1b2b4b' }}
                   />
                 </div>
                 <div className="flex gap-2 pt-2">
                   <button
                     type="submit"
                     className="flex-1 px-4 py-3 font-bold rounded-lg transition-all transform hover:scale-105 active:scale-95 shadow-lg"
-                    style={{ backgroundColor: '#FFFF00', color: '#0a0a0a' }}
+                    style={{ backgroundColor: '#38bdf8', color: '#050b18' }}
                   >
                     Update
                   </button>
@@ -447,9 +447,9 @@ export default function AdminDashboard() {
               exit={{ scale: 0.9, y: 20 }}
               onClick={(e) => e.stopPropagation()}
               className="border-2 p-6 sm:p-8 rounded-lg max-w-md w-full shadow-2xl"
-              style={{ backgroundColor: '#111111', borderColor: '#FFFF00' }}
+              style={{ backgroundColor: '#0b1635', borderColor: '#38bdf8' }}
             >
-              <h3 className="text-xl sm:text-2xl font-bold mb-4" style={{ color: '#FFFF00' }}>
+              <h3 className="text-xl sm:text-2xl font-bold mb-4" style={{ color: '#38bdf8' }}>
                 Create New Team
               </h3>
               <form onSubmit={handleCreateTeam} className="space-y-4">
@@ -459,8 +459,8 @@ export default function AdminDashboard() {
                     type="text"
                     name="teamName"
                     placeholder="Enter team name"
-                    className="w-full px-4 py-3 bg-black/60 border-2 text-white rounded-lg focus:outline-none focus:border-yellow-500 transition-colors"
-                    style={{ borderColor: '#1a1a1a' }}
+                    className="w-full px-4 py-3 bg-black/60 border-2 text-white rounded-lg focus:outline-none focus:border-dsl-blue transition-colors"
+                    style={{ borderColor: '#1b2b4b' }}
                     required
                     autoFocus
                   />
@@ -471,15 +471,15 @@ export default function AdminDashboard() {
                     type="number"
                     name="initialScore"
                     defaultValue={0}
-                    className="w-full px-4 py-3 bg-black/60 border text-white rounded-lg font-mono focus:outline-none focus:border-yellow-500 transition-colors"
-                    style={{ borderColor: '#1a1a1a' }}
+                    className="w-full px-4 py-3 bg-black/60 border text-white rounded-lg font-mono focus:outline-none focus:border-dsl-blue transition-colors"
+                    style={{ borderColor: '#1b2b4b' }}
                   />
                 </div>
                 <div className="flex gap-2 pt-2">
                   <button
                     type="submit"
                     className="flex-1 px-4 py-3 font-bold rounded-lg transition-all transform hover:scale-105 active:scale-95 shadow-lg"
-                    style={{ backgroundColor: '#FFFF00', color: '#0a0a0a' }}
+                    style={{ backgroundColor: '#38bdf8', color: '#050b18' }}
                   >
                     Create
                   </button>
@@ -512,7 +512,7 @@ export default function AdminDashboard() {
               exit={{ scale: 0.9, y: 20 }}
               onClick={(e) => e.stopPropagation()}
               className="bg-black/40 border-2 border-blue-500 p-6 sm:p-8 rounded-lg max-w-2xl w-full shadow-2xl backdrop-blur-md"
-              style={{ backgroundColor: '#111111' }}
+              style={{ backgroundColor: '#0b1635' }}
             >
               <h3 className="text-xl sm:text-2xl font-bold text-blue-400 mb-2">
                 📋 Bulk Import Teams

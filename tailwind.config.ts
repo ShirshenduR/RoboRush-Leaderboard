@@ -9,11 +9,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'neon-yellow': '#FFFF00',
-        'neon-yellow-glow': '#FFFF00',
-        'dark-bg': '#0a0a0a',
-        'dark-panel': '#111111',
-        'dark-border': '#1a1a1a',
+        'dsl-blue': '#38bdf8',
+        'dsl-blue-glow': '#7dd3fc',
+        'dark-bg': '#050b18',
+        'dark-panel': '#0b1635',
+        'dark-border': '#1b2b4b',
       },
       animation: {
         'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
@@ -22,8 +22,8 @@ const config: Config = {
       },
       keyframes: {
         'pulse-glow': {
-          '0%, 100%': { boxShadow: '0 0 5px #FFFF00, 0 0 10px #FFFF00' },
-          '50%': { boxShadow: '0 0 10px #FFFF00, 0 0 20px #FFFF00, 0 0 30px #FFFF00' },
+          '0%, 100%': { boxShadow: '0 0 6px #38bdf8, 0 0 12px #38bdf8' },
+          '50%': { boxShadow: '0 0 12px #38bdf8, 0 0 24px #38bdf8, 0 0 36px #38bdf8' },
         },
         'slide-up': {
           '0%': { transform: 'translateY(10px)', opacity: '0' },
@@ -35,7 +35,7 @@ const config: Config = {
         },
       },
       backgroundImage: {
-        'circuit-pattern': "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FFFF00' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+        'arena-pattern': "url(\"data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='120' height='120' fill='none'/%3E%3Cg stroke='%2338bdf8' stroke-opacity='0.08' stroke-width='1'%3E%3Cpath d='M0 30h120M0 60h120M0 90h120'/%3E%3Cpath d='M30 0v120M60 0v120M90 0v120'/%3E%3Ccircle cx='60' cy='60' r='18'/%3E%3Cpath d='M10 60h20M90 60h20'/%3E%3C/g%3E%3C/svg%3E\")",
       },
     },
   },

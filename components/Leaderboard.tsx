@@ -144,7 +144,7 @@ export default function Leaderboard() {
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="text-neon-yellow text-2xl animate-pulse"
+          className="text-dsl-blue text-2xl animate-pulse font-display"
         >
           Loading...
         </motion.div>
@@ -153,15 +153,18 @@ export default function Leaderboard() {
   }
 
   return (
-    <div className="min-h-screen bg-dark-bg bg-circuit-pattern text-white relative overflow-hidden">
+    <div className="min-h-screen bg-dark-bg bg-arena-pattern text-white relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute w-full h-1 bg-gradient-to-r from-transparent via-neon-yellow to-transparent opacity-20 animate-scan" />
+        <div className="absolute w-full h-1 bg-gradient-to-r from-transparent via-dsl-blue to-transparent opacity-25 animate-scan" />
+        <div className="absolute -top-20 -right-10 h-64 w-64 rounded-full bg-dsl-blue/20 blur-[80px]" />
+        <div className="absolute -bottom-24 left-10 h-72 w-72 rounded-full bg-cyan-400/10 blur-[90px]" />
+        <div className="absolute inset-x-0 top-24 h-px bg-gradient-to-r from-transparent via-dsl-blue/40 to-transparent" />
       </div>
 
       <motion.header 
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className="relative border-b-2 border-neon-yellow bg-black/50 backdrop-blur-sm sticky top-0 z-40"
+        className="relative border-b-2 border-dsl-blue bg-dark-panel/70 backdrop-blur-sm sticky top-0 z-40"
       >
         <div className="container mx-auto px-3 sm:px-4 md:px-6 py-4 md:py-6">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
@@ -170,13 +173,12 @@ export default function Leaderboard() {
                 initial={{ scale: 0.8 }}
                 animate={{ scale: 1 }}
                 transition={{ type: "spring", stiffness: 200 }}
-                className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-neon-yellow tracking-wider" 
-                style={{ fontFamily: 'monospace' }}
+                className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-dsl-blue font-display"
               >
-                ROBO RUSH 2026
+                DRONE SOCCER LEAGUE 2026
               </motion.h1>
-              <p className="text-xs sm:text-sm md:text-base text-gray-400 mt-1 tracking-widest">
-                ERS CLUB • LIVE LEADERBOARD
+              <p className="text-xs sm:text-sm md:text-base text-gray-300 mt-1 tracking-[0.35em]">
+                DSL 2026 • LIVE LEADERBOARD
               </p>
             </div>
             <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto">
@@ -184,8 +186,7 @@ export default function Leaderboard() {
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.2 }}
-                className="flex items-center gap-2 px-3 py-2 bg-black/40 rounded-lg border"
-                style={{ borderColor: '#1a1a1a' }}
+                className="flex items-center gap-2 px-3 py-2 bg-black/40 rounded-lg border border-dark-border"
               >
                 <motion.div 
                   animate={{ 
@@ -199,7 +200,7 @@ export default function Leaderboard() {
                     'bg-red-500'
                   }`} 
                 />
-                <span className="text-xs text-gray-400 uppercase tracking-wider font-medium">
+                <span className="text-xs text-gray-300 uppercase tracking-wider font-medium">
                   {connectionStatus === 'polling' ? 'LIVE' : connectionStatus}
                 </span>
               </motion.div>
@@ -208,11 +209,11 @@ export default function Leaderboard() {
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.3 }}
                 href="/admin/login"
-                className="flex items-center gap-2 px-3 py-2 bg-dark-panel border border-neon-yellow/30 hover:border-neon-yellow hover:bg-neon-yellow/10 rounded-lg transition-all group"
+                className="flex items-center gap-2 px-3 py-2 bg-dark-panel border border-dsl-blue/40 hover:border-dsl-blue hover:bg-dsl-blue/10 rounded-lg transition-all group"
                 title="Admin Login"
               >
                 <svg
-                  className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 group-hover:text-neon-yellow transition-colors"
+                  className="w-4 h-4 sm:w-5 sm:h-5 text-gray-300 group-hover:text-dsl-blue transition-colors"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -224,11 +225,22 @@ export default function Leaderboard() {
                     d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
                   />
                 </svg>
-                <span className="text-xs text-gray-400 group-hover:text-neon-yellow uppercase tracking-wider hidden md:inline font-medium">
+                <span className="text-xs text-gray-300 group-hover:text-dsl-blue uppercase tracking-wider hidden md:inline font-medium">
                   Admin
                 </span>
               </motion.a>
             </div>
+          </div>
+          <div className="mt-4 flex flex-wrap items-center gap-2 text-xs text-gray-400">
+            <span className="px-2 py-1 rounded-full border border-dsl-blue/40 text-dsl-blue/90 uppercase tracking-[0.3em] font-display">
+              Arena Alpha
+            </span>
+            <span className="px-2 py-1 rounded-full bg-dsl-blue/10 border border-dsl-blue/30">
+              Drone Soccer League
+            </span>
+            <span className="px-2 py-1 rounded-full bg-white/5 border border-dark-border">
+              Season 2026
+            </span>
           </div>
         </div>
       </motion.header>
@@ -253,15 +265,15 @@ export default function Leaderboard() {
                 className={`
                   relative overflow-hidden
                   bg-gradient-to-r from-dark-panel to-dark-bg
-                  border-2 ${index < 3 ? 'border-neon-yellow' : 'border-dark-border'}
-                  ${index < 3 ? 'shadow-lg shadow-neon-yellow/20' : ''}
+                  border-2 ${index < 3 ? 'border-dsl-blue' : 'border-dark-border'}
+                  ${index < 3 ? 'shadow-lg shadow-dsl-blue/20' : ''}
                   rounded-lg sm:rounded-xl
                   transition-all duration-300
                 `}
               >
                 {index < 3 && (
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-neon-yellow/5 via-transparent to-neon-yellow/5"
+                    className="absolute inset-0 bg-gradient-to-r from-dsl-blue/10 via-transparent to-dsl-blue/10"
                     animate={{ x: ['-100%', '100%'] }}
                     transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
                   />
@@ -273,14 +285,14 @@ export default function Leaderboard() {
                   transition={{ delay: index * 0.05 + 0.2, type: "spring" }}
                   className={`
                     absolute top-0 left-0 w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center
-                    ${index === 0 ? 'bg-gradient-to-br from-yellow-400 to-yellow-600' : 
-                      index === 1 ? 'bg-gradient-to-br from-gray-300 to-gray-500' : 
-                      index === 2 ? 'bg-gradient-to-br from-orange-400 to-orange-600' : 
-                      'bg-gradient-to-br from-gray-700 to-gray-900'}
+                    ${index === 0 ? 'bg-gradient-to-br from-cyan-300 to-blue-500' : 
+                      index === 1 ? 'bg-gradient-to-br from-slate-300 to-slate-500' : 
+                      index === 2 ? 'bg-gradient-to-br from-teal-300 to-cyan-500' : 
+                      'bg-gradient-to-br from-slate-700 to-slate-900'}
                     rounded-br-2xl shadow-lg
                   `}
                 >
-                  <span className="text-xl sm:text-2xl md:text-3xl font-bold text-black drop-shadow-lg" style={{ fontFamily: 'monospace' }}>
+                  <span className="text-xl sm:text-2xl md:text-3xl font-bold text-black drop-shadow-lg font-display">
                     {index + 1}
                   </span>
                   {index < 3 && (
@@ -289,9 +301,9 @@ export default function Leaderboard() {
                       animate={{ rotate: 360 }}
                       transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
                     >
-                      {index === 0 && <span className="text-2xl">👑</span>}
-                      {index === 1 && <span className="text-xl">⭐</span>}
-                      {index === 2 && <span className="text-xl">✨</span>}
+                      {index === 0 && <span className="text-2xl">🏆</span>}
+                      {index === 1 && <span className="text-xl">⚽</span>}
+                      {index === 2 && <span className="text-xl">🛰️</span>}
                     </motion.div>
                   )}
                 </motion.div>
@@ -336,10 +348,9 @@ export default function Leaderboard() {
                   >
                     <motion.div 
                       key={team.score}
-                      initial={{ scale: 1.5, color: '#FFFF00' }}
-                      animate={{ scale: 1, color: '#FFFF00' }}
-                      className="text-3xl sm:text-4xl md:text-5xl font-bold text-neon-yellow" 
-                      style={{ fontFamily: 'monospace' }}
+                      initial={{ scale: 1.5, color: '#38bdf8' }}
+                      animate={{ scale: 1, color: '#38bdf8' }}
+                      className="text-3xl sm:text-4xl md:text-5xl font-bold text-dsl-blue font-display"
                     >
                       {team.score}
                     </motion.div>
@@ -350,7 +361,7 @@ export default function Leaderboard() {
                 </div>
 
                 <motion.div 
-                  className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-neon-yellow/30 to-transparent"
+                  className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-dsl-blue/40 to-transparent"
                   animate={{ x: ['-100%', '100%'] }}
                   transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
                 />
@@ -370,7 +381,7 @@ export default function Leaderboard() {
               transition={{ duration: 2, repeat: Infinity }}
               className="text-6xl mb-4"
             >
-              🏆
+              ⚽
             </motion.div>
             <p className="text-gray-500 text-lg sm:text-xl">No teams registered yet</p>
             <p className="text-gray-600 text-sm mt-2">The competition will begin soon!</p>
@@ -382,11 +393,11 @@ export default function Leaderboard() {
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.5 }}
-        className="fixed bottom-0 left-0 right-0 bg-black/50 backdrop-blur-sm border-t border-neon-yellow/30 py-2 sm:py-3 z-30"
+        className="fixed bottom-0 left-0 right-0 bg-dark-panel/70 backdrop-blur-sm border-t border-dsl-blue/30 py-2 sm:py-3 z-30"
       >
         <div className="container mx-auto px-3 sm:px-4 text-center">
           <p className="text-xs sm:text-sm text-gray-500 tracking-wider">
-            <span className="hidden sm:inline">© 2026 ERS CLUB • </span>
+            <span className="hidden sm:inline">© 2026 Drone Soccer League • </span>
             <motion.span
               animate={{ opacity: [1, 0.5, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
@@ -395,7 +406,7 @@ export default function Leaderboard() {
               LIVE
             </motion.span>
             <span className="mx-2">•</span>
-            <span className="font-mono text-neon-yellow">{teams.length}</span> TEAMS
+            <span className="font-display text-dsl-blue">{teams.length}</span> TEAMS
           </p>
         </div>
       </motion.footer>

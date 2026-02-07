@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Space+Grotesk:wght@400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,11 +7,21 @@
 @layer base {
   body {
     @apply bg-dark-bg text-white;
+    font-family: 'Space Grotesk', 'IBM Plex Sans', sans-serif;
+    background-image: radial-gradient(circle at top, rgba(56, 189, 248, 0.18), transparent 45%),
+      radial-gradient(circle at 80% 20%, rgba(34, 211, 238, 0.12), transparent 40%);
+  }
+}
+
+@layer components {
+  .font-display {
+    font-family: 'Orbitron', 'Space Grotesk', sans-serif;
+    letter-spacing: 0.08em;
   }
 }
 
 @layer utilities {
   .text-shadow-glow {
-    text-shadow: 0 0 10px #FFFF00, 0 0 20px #FFFF00;
+    text-shadow: 0 0 10px #38bdf8, 0 0 22px #38bdf8;
   }
 }

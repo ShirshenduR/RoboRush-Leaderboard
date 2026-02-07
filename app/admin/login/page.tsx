@@ -45,10 +45,10 @@ export default function AdminLogin() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4" style={{ backgroundColor: '#0a0a0a' }}>
+    <div className="min-h-screen flex items-center justify-center px-4" style={{ backgroundColor: '#050b18' }}>
       <div className="w-full max-w-md">
-        <div className="border-2 p-8 rounded" style={{ backgroundColor: '#111111', borderColor: '#FFFF00' }}>
-          <h1 className="text-3xl font-bold text-center mb-6" style={{ color: '#FFFF00' }}>
+        <div className="border-2 p-8 rounded" style={{ backgroundColor: '#0b1635', borderColor: '#38bdf8' }}>
+          <h1 className="text-3xl font-bold text-center mb-6 font-display" style={{ color: '#38bdf8' }}>
             ADMIN ACCESS
           </h1>
           
@@ -63,7 +63,7 @@ export default function AdminLogin() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full px-4 py-3 rounded"
-                style={{ backgroundColor: '#0a0a0a', border: '1px solid #1a1a1a', color: 'white' }}
+                style={{ backgroundColor: '#050b18', border: '1px solid #1b2b4b', color: 'white' }}
                 placeholder="Enter admin password"
                 required
                 disabled={loading}
@@ -80,7 +80,7 @@ export default function AdminLogin() {
               type="submit"
               disabled={loading}
               className="w-full font-bold py-3 rounded transition-colors disabled:opacity-50"
-              style={{ backgroundColor: '#FFFF00', color: 'black' }}
+              style={{ backgroundColor: '#38bdf8', color: '#050b18' }}
             >
               {loading ? 'Authenticating...' : 'Login'}
             </button>
@@ -89,7 +89,7 @@ export default function AdminLogin() {
 
         <div className="mt-6 text-center">
           <a href="/" className="text-sm" style={{ color: '#6b7280' }}>
-            ← Back to Leaderboard
+            ← Back to DSL Leaderboard
           </a>
         </div>
       </div>
